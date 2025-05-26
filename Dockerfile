@@ -1,12 +1,11 @@
 FROM python:3.12
 
 WORKDIR /app
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
+COPY . /app
 
 EXPOSE 5000
 
-CMD [ "flask", "--app", "my_app", "run", "--host=0.0.0.0" ]
+CMD ["python", "./my_app.py"]
